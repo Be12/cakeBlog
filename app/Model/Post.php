@@ -1,8 +1,15 @@
 <?php
+class Post extends AppModel{
 
-class Post extends AppModel {
-      // make sure that no empty Posts are added
- public $validate = array(
+    // make sure that no empty Posts are added
+	
+	public $belongsTo = array(
+		'User' => array(
+			'className' => 'User',
+			'foreignKey' => 'user_id')
+	);
+	
+	public $validate = array(
         'title' => array(
             'rule' => 'notEmpty'
         ),
@@ -11,11 +18,8 @@ class Post extends AppModel {
         )
     );
 
- }
-
- public function isOwnedBy($post, $user) {
-    return $this->field('id', array('id' => $post, 'user_id' => $user)) === $post;
+	public function isOwnedBy($post, $user) {
+    	return $this->field('id', array('id' => $post, 'user_id' => $user)) === $post;
+	}
 }
-
-
 ?>

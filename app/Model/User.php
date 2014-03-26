@@ -1,5 +1,8 @@
 <?php
 // app/Model/User.php
+
+App::uses('SimplePasswordHasher', 'Controller/Component/Auth');
+
 class User extends AppModel {
     public $validate = array(
         'username' => array(
